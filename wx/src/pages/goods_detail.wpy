@@ -66,8 +66,8 @@
       </view>
     </view> -->
     <view class="spacing"></view>
-    <view class="block">
-      <view class="block_title">商品信息</view>
+    <view class="block" wx:if="detail.attrList">
+      <view class="block_title">商品信息12</view>
       <view class="block_content">
         <view class="table">
           <view class="th" wx:for="{{detail.attrList}}" key="item" item="item" wx:key="key">
@@ -77,10 +77,10 @@
       </view>
     </view>
     <view class="spacing"></view>
-    <view class="block">
+    <view class="block" wx:if="detailInfo">
       <view class="block_title">商品详情</view>
     </view>
-    <view class="big_images">
+    <view class="big_images" wx:if="detailInfo">
       <view class="doc">
         <view class="wxParse-p">
           <template is="wxParse" data="{{wxParseData:detailInfo.nodes}}">
