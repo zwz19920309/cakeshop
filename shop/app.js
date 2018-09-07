@@ -75,7 +75,7 @@ app.use(async (ctx, next) => {
 // 初始化路由中间件
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(process.env.PORT || 3002);
-console.log('OT App started at port 8000...');
+app.listen(process.env.PORT || 8001);
+console.log('OT App started at port 8001...');
 
 module.exports = app;
