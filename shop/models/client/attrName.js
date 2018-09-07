@@ -13,6 +13,7 @@ var v_attrName = userSequelize.define('v_attrName', {
   categoryCode:{
     type: Sequelize.STRING(40)
   },
+  
   createdAt: {
     type: Sequelize.DATE,
     defaultValue:new Date(),

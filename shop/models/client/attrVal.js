@@ -13,6 +13,7 @@ var v_attrVal = userSequelize.define('v_attrVal', {
   attrVal:{
     type: Sequelize.STRING(100)
   },
+  
   createdAt: {
     type: Sequelize.DATE,
     defaultValue:new Date(),
