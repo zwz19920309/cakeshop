@@ -1,7 +1,7 @@
 const userSequelize = require('../../mysql/ot-app-mysql');
 const Sequelize = require('sequelize');
 const moment = require('moment');
-var v_attrName = userSequelize.define('v_attrName', {
+var v_attrname = userSequelize.define('v_attrname', {
   id: {
     type: Sequelize.BIGINT,
     autoIncrement: true,
@@ -13,7 +13,7 @@ var v_attrName = userSequelize.define('v_attrName', {
   categoryCode:{
     type: Sequelize.STRING(40)
   },
-  
+
   createdAt: {
     type: Sequelize.DATE,
     defaultValue:new Date(),
@@ -31,7 +31,7 @@ var v_attrName = userSequelize.define('v_attrName', {
      }
   }
 }, {
-  tableName: 'v_attrName'
+  tableName: 'v_attrname'
 });
 
-module.exports = v_attrName;
+module.exports = v_attrname;
