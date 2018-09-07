@@ -8,7 +8,7 @@ const routesLoader = require('../common/utils/routesloader');
 
 // 装载所有子路由
 let router = new Router({
-  prefix: '/shop'
+  prefix: '/client'
 });
 
 // router.use(jwt.verify);
