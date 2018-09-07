@@ -4,7 +4,7 @@ module.exports = {
     IP: '127.0.0.1',
     PORT: 3306,
     USER: 'root',
-    PWD: '123456'
+    PWD: '123'
   },
   REDIS: {
     PORT: 6379,
