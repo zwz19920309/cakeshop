@@ -10,7 +10,10 @@ const attrName = require('./client/attrName.js');
 const attrVal = require('./client/attrVal.js');
 const photo = require('./client/photo.js');
 
+const adv = require('./client/adv.js');
+
 const discovergoods = require('./client/discovergoods.js');
+
 // const user = require('./client/user.js');
 // const audio = require('./client/audio.js');
 // const anchor = require('./client/anchor.js');

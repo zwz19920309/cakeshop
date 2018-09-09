@@ -11,19 +11,61 @@ var v_adv = userSequelize.define('v_adv', {
   name: {
     type: Sequelize.STRING(128),
   },
-  title: {
-    type: Sequelize.STRING(128)
+  status:{
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
   },
-  desc: {
+  type:{
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  },
+  isdeleted:{
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  },
+  limitFowards:{
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  },
+  limitPrice:{
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  },
+  locationFlag:{
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 1
+  },
+  picUrl:{
     type: Sequelize.STRING(200)
   },
-  picurl:{
+  advertUrl:{
     type: Sequelize.STRING(200)
   },
-  detailid:{
-    type: Sequelize.INTEGER
+  status:{
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  },presentAmout:{
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
   },
-  piclink:{
+  promoDesc: {
+    type: Sequelize.STRING(200)
+  },
+  promoPicUrl: {
+    type: Sequelize.STRING(200)
+  },
+  promoPicUrl: {
+    type: Sequelize.STRING(200)
+  },
+  promoTips: {
     type: Sequelize.STRING(128)
   }
 }, {
