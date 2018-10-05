@@ -1,6 +1,9 @@
 const httpResult = require('../../common/http/http-result');
 const GoodsService = require('../../services/client/goods-service');
 const photoService = require('../../services/client/photo-service');
+const discoverService = require('../../services/client/discover-service');
+const attrNameService = require('../../services/client/attrName-service');
+const attrValService = require('../../services/client/attrVal-service');
 const toolsUtil = require('../../common/utils/tools');
 
 const getGoodsList = async (ctx) => {
@@ -21,6 +24,45 @@ const getGoodsList = async (ctx) => {
     }
     ctx.response.body = result;
  };
+
+const hostGoodsList = async (ctx) => {
+
+
+    let body = ctx.request.body;
+    let total_page = 0;
+    let pageInfo = {page:  body.page || 1, pageSize: body.pageSize ||10};
+    let result = null;
+    try {
+        let  discover = await discoverService.getDiscoverById({id: 1});
+        let all = await GoodsService.getGoodsCount({categoryCode: '004'});
+        result = await GoodsService.getGoodsList({categoryCode: '004'}, pageInfo);
+        if (result && result[0]) {
+            total_page =parseInt(Math.ceil(all /  parseInt(pageInfo.pageSize)));
+            toolsUtil.addPicPrefix(ctx, result);
+        }
+        let attrs = [];
+        let newResult = [];
+        let attrNames = await attrNameService.getAttrNameList({discoverId: 1});
+        for (let m = 0; m < attrNames.length; m++) {
+            let attrVals = await attrValService.getAttrValList({attrNameId: attrNames[m].id});
+            attrs.push({attrName: attrNames[m], attrValList: attrVals});
+        }
+        discover = discover.toJSON();
+        discover.attrs = attrs;
+        result = {
+            category: discover,
+            list: result,
+            page_total: total_page,
+            reason: '',
+            code: '0',
+            discover: discover
+        };
+    } catch (e) {
+        result = httpResult.response(httpResult.HttpStatus.EXCEPTION, e.message, undefined);
+    }
+    ctx.response.body = result;
+};
+
 
 
  const getGoodsListByCategory = async (ctx) => {
@@ -109,7 +151,6 @@ const getGoodsListByCategoryDetail = async (ctx) => {
   ctx.response.body = result;
 };
 
-//getGoodsListAll
 
  const getGoodsById = async (ctx) => {
   let body = ctx.query;
@@ -172,11 +213,12 @@ const updateGoodsPlayById= async (ctx) => {
 
   module.exports = {
     getGoodsList,
-    addGoods,
+    addGoods,hostGoodsList,
     getGoodsById,
     getGoodsListByAnchorId,
     updateGoodsPlayById,
     getGoodsListByCategory,
-    getGoodsListByCategoryDetail
+    getGoodsListByCategoryDetail,
+      hostGoodsList
   };
   

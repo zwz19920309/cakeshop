@@ -7,7 +7,8 @@ apiRouter.post('/getGoodsListByAnchorId', GoodsCtrl.getGoodsListByAnchorId);
 apiRouter.post('/updateGoodsPlayById', GoodsCtrl.updateGoodsPlayById);
 apiRouter.post('/getGoodsListByCategory', GoodsCtrl.getGoodsListByCategory);
 apiRouter.get('/getGoodsListByCategoryDetail', GoodsCtrl.getGoodsListByCategoryDetail);
-
+apiRouter.get('/hostGoodsList', GoodsCtrl.hostGoodsList);
+//hostGoodsList
 module.exports = router => {
   router.use('/goods', apiRouter.routes(), apiRouter.allowedMethods());
 };
