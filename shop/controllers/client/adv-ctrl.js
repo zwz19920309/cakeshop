@@ -6,8 +6,7 @@ const getAdvList = async (ctx) => {
     let result = null;
     try {
       result = await advService.getAdvList({});
-      toolsUtil.addPicPrefix(ctx, result);   
-      result = httpResult.response(httpResult.HttpStatus.SUCCESS, 'SUCCESS', {result});
+      result = httpResult.response(httpResult.HttpStatus.SUCCESS, 'SUCCESS', result);
     } catch (e) {
       result = httpResult.response(httpResult.HttpStatus.EXCEPTION, e.message, undefined);
     }
