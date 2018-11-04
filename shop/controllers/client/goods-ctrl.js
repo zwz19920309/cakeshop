@@ -28,21 +28,26 @@ const getGoodsList = async (ctx) => {
 const hostGoodsList = async (ctx) => {
 
 
-    let body = ctx.request.body;
+    let body = ctx.request.query;
     let total_page = 0;
+    let cateCode = body.cateCode;
     let pageInfo = {page:  body.page || 1, pageSize: body.pageSize ||10};
     let result = null;
     try {
-        let  discover = await discoverService.getDiscoverById({id: 1});
-        let all = await GoodsService.getGoodsCount({categoryCode: '004'});
-        result = await GoodsService.getGoodsList({categoryCode: '004'}, pageInfo);
+        let  discovers = await discoverService.getDiscoverByCons({code: cateCode});
+        if (!(discovers && discovers[0])) {
+          return ctx.response.body = httpResult.response(httpResult.HttpStatus.FAIL, 'FAIL', {});
+        }
+        let discover = discovers[0];
+        let all = await GoodsService.getGoodsCount({discoverCode: cateCode});
+        result = await GoodsService.getGoodsList({discoverCode: cateCode}, pageInfo);
         if (result && result[0]) {
             total_page =parseInt(Math.ceil(all /  parseInt(pageInfo.pageSize)));
             toolsUtil.addPicPrefix(ctx, result);
         }
         let attrs = [];
         let newResult = [];
-        let attrNames = await attrNameService.getAttrNameList({discoverId: 1});
+        let attrNames = await attrNameService.getAttrNameList({categoryCode: cateCode});
         for (let m = 0; m < attrNames.length; m++) {
             let attrVals = await attrValService.getAttrValList({attrNameId: attrNames[m].id});
             attrs.push({attrName: attrNames[m], attrValList: attrVals});

@@ -12,6 +12,14 @@ let findAll = async (Model, params) => {
   return result;
 };
 
+let findOne = async (Model, params) => {
+  let result = await Model.findOne(params).catch(err => {
+    throw (err);
+  });
+  return result;
+};
+
+
 /**
   * 查询单个-条件查询-分页查询
   * @param  {object} params
@@ -110,5 +118,6 @@ module.exports = {
   updateData,
   sumCons,
   save,
-  findById
+  findById,
+  findOne
 };

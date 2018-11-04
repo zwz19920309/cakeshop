@@ -18,7 +18,10 @@ const getDiscoverById = async (params) => {
     return discover;
 }
 
-
+const getDiscoverByCons = async (params) => {
+    let discover = await dbUtil.findAll(discoverModel, { where: params  });
+    return discover;
+}
 
 const getDiscoverCount = async (params, pageInfo) => {
     let count = await dbUtil.count(discoverModel, { where: params  });
@@ -31,5 +34,6 @@ const getDiscoverCount = async (params, pageInfo) => {
 module.exports = {
     getDiscoverList,
     getDiscoverCount,
-    getDiscoverById
+    getDiscoverById,
+    getDiscoverByCons
 };
